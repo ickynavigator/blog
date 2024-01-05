@@ -896,7 +896,33 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.6.1.tgz#9ab8f811930d7af3e3d549183a50884f9eb83f36"
   integrity sha512-UY+FGM/2jjMkzQLn8pxcHGMaVLh9aEitG3zY2CiY7XHdLiz3bZOwa6oDxNqEMv7zZkV+cj5DOdz0cQ1BP5Hjgw==
 
-"@sanity-typed/types@^6.3.0":
+"@sanity-typed/client@2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@sanity-typed/client/-/client-2.1.5.tgz#e72ed416ff28f916d2b58a17c05ea2349052980d"
+  integrity sha512-wriIzQ/FGRaXRQhOi9taZRgCm6WpAyxNYhz1N1PyENL5sIQF+Ah9pMN1qnyr0PCK/Ja7hNU/eCUnTefEHRBjNQ==
+  dependencies:
+    "@sanity-typed/groq" "1.8.8"
+    "@sanity-typed/types" "6.3.0"
+    type-fest "4.8.3"
+
+"@sanity-typed/groq@1.8.8":
+  version "1.8.8"
+  resolved "https://registry.yarnpkg.com/@sanity-typed/groq/-/groq-1.8.8.tgz#2806e874d2df846f01aa7537957b0c2aed79a0a4"
+  integrity sha512-68isYeU3K9RrvpN4MO4Qv5ekHHQ/5v+S3IAbPfgLequQunwogk9YHiWLk1p7Q9H5/bHEk35Kcf2lIaYfB0nQzQ==
+  dependencies:
+    "@portabletext-typed/types" "1.0.1"
+    "@sanity-typed/types" "6.3.0"
+    type-fest "4.8.3"
+
+"@sanity-typed/next-sanity@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@sanity-typed/next-sanity/-/next-sanity-1.0.5.tgz#b2fa2d5bfb23f6b82f692e1c55f45e50894d05d9"
+  integrity sha512-wT0eRvURZqrxyGPwlmIjTXn1bTP5U/Kx5HE/GUcHJjwue2F1DvBE4DIaIE/OkxqkAsjJ7gnl8MLAZ3/KaqtpDw==
+  dependencies:
+    "@sanity-typed/client" "2.1.5"
+    "@sanity-typed/types" "6.3.0"
+
+"@sanity-typed/types@6.3.0", "@sanity-typed/types@^6.3.0":
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/@sanity-typed/types/-/types-6.3.0.tgz#177cafbce157814f513408cad94f23d774927d2f"
   integrity sha512-gUCtphxPnz1rhGcV17DklwRpkcy1enj3hatpCD99HGen227ouZiZaAlRC12+6anO9CqosxasOSU4mUeXs8PxFw==
