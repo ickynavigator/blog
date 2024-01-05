@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/core": "^7.4.0",
+    "@mantine/hooks": "^7.4.0",
     "@sanity-typed/types": "^6.3.0",
     "@sanity/client": "^6.10.0",
     "@sanity/icons": "^2.0",
@@ -30,6 +32,9 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "postcss": "^8.4.33",
+    "postcss-preset-mantine": "^1.12.3",
+    "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.1.1",
     "typescript": "^5"
   }
