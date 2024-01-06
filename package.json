@@ -11,6 +11,7 @@
   "dependencies": {
     "@mantine/core": "^7.4.0",
     "@mantine/hooks": "^7.4.0",
+    "@portabletext/react": "^3.0.11",
     "@sanity-typed/next-sanity": "^1.0.5",
     "@sanity-typed/types": "^6.3.0",
     "@sanity/client": "^6.10.0",
