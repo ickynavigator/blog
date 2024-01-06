@@ -9,9 +9,9 @@ const PostCard = (props: SanityValues['post']) => {
   const img = urlForImage(props.mainImage)?.url();
 
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
+    <Card shadow="sm" padding="lg" radius="lg" withBorder>
       <Card.Section>
-        <Image src={img} alt={`main image for ${props.title}`} />
+        <Image src={img} alt={`main image for ${props.title}`} radius="lg" />
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">
