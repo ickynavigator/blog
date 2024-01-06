@@ -5,7 +5,11 @@ import config from '~/lib/sanity/config';
 const { dataset, projectId } = config;
 export const imageBuilder = createImageUrlBuilder({ projectId, dataset });
 
-export const urlForImage = (source: Image) => {
+export const urlForImage = (source?: Image) => {
+  if (!source) {
+    return undefined;
+  }
+
   // Ensure that source image contains a valid reference
   if (!source?.asset?._ref) {
     return undefined;
