@@ -1,6 +1,15 @@
-import { Anchor, Badge, Group, Text } from '@mantine/core';
+import {
+  Anchor,
+  Badge,
+  Center,
+  Group,
+  SimpleGrid,
+  Stack,
+  Text,
+} from '@mantine/core';
 import Link from 'next/link';
 import PostPagination from '~/components/pagination/post.pagination';
+import PostCard from '~/components/postCard';
 import { getClient } from '~/lib/sanity/client';
 import classes from './page.module.css';
 
@@ -15,7 +24,7 @@ export default async function Home({
 
   const CATEGORIES_FRAGMENT = /* groq */ `*[_type == "category"]`;
   const categories = await client.fetch(CATEGORIES_FRAGMENT);
-  const _POSTS_FRAGMENT = /* groq */ `*[_type=="category"]`;
+  const _POSTS_FRAGMENT = /* groq */ `*[_type=="post"]`;
   const POSTS_FRAGMENT = /* groq */ `{
     'posts':  ${_POSTS_FRAGMENT}   
               | order(_updatedAt desc)
@@ -30,7 +39,7 @@ export default async function Home({
   });
 
   return (
-    <>
+    <Stack>
       <Text my="sm">
         Welcome to my blog, collection of random thoughts and occasional
         tutorials (hopefully)
@@ -51,10 +60,18 @@ export default async function Home({
         ))}
       </Group>
 
-      <PostPagination
-        total={Math.ceil(pagination.totalCount / ITEMS_PER_PAGE)}
-        current={pagination.pageNumber}
-      />
-    </>
+      <SimpleGrid cols={3}>
+        {posts.map(post => (
+          <PostCard key={post._id} {...post} />
+        ))}
+      </SimpleGrid>
+
+      <Center>
+        <PostPagination
+          total={Math.ceil(pagination.totalCount / ITEMS_PER_PAGE)}
+          current={pagination.pageNumber}
+        />
+      </Center>
+    </Stack>
   );
 }
