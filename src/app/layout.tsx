@@ -1,8 +1,10 @@
 import '@mantine/core/styles.css';
 
-import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { ColorSchemeScript, Container, MantineProvider } from '@mantine/core';
 import type { Metadata } from 'next';
 import { Bricolage_Grotesque } from 'next/font/google';
+import Footer from './_components/footer';
+import Header from './_components/header';
 
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
@@ -21,8 +23,17 @@ function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <ColorSchemeScript />
       </head>
+
       <body className={bricolage.className}>
-        <MantineProvider>{children}</MantineProvider>
+        <MantineProvider>
+          <Container size="md">
+            <Header />
+
+            {children}
+
+            <Footer />
+          </Container>
+        </MantineProvider>
       </body>
     </html>
   );
