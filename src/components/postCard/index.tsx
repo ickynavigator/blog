@@ -11,13 +11,7 @@ const PostCard = (props: SanityValues['post']) => {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
-        <Image
-          className="post__cover"
-          src={img}
-          height={231}
-          width={367}
-          alt=""
-        />
+        <Image src={img} alt={`main image for ${props.title}`} />
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">
