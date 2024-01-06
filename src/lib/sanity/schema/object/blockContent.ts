@@ -3,6 +3,7 @@ import {
   defineField,
   defineType,
 } from '@sanity-typed/types';
+import { CodeBlockIcon } from '@sanity/icons';
 
 export default defineType({
   title: 'Block Content',
@@ -38,6 +39,18 @@ export default defineType({
           { title: 'Strike', value: 'strike-through' as const },
         ],
         annotations: [
+          defineArrayMember({
+            title: 'Code',
+            name: 'codeBlock',
+            type: 'object',
+            icon: CodeBlockIcon,
+            fields: [
+              defineField({
+                name: 'language',
+                type: 'string',
+              }),
+            ],
+          }),
           defineArrayMember({
             title: 'Link',
             name: 'link',

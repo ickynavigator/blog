@@ -1,4 +1,5 @@
-import { Group, Image, Stack, Text, Title } from '@mantine/core';
+import { CodeHighlight } from '@mantine/code-highlight';
+import { Box, Code, Group, Image, Stack, Text, Title } from '@mantine/core';
 import { PortableText } from '@portabletext/react';
 import { formatDate } from '~/lib/date';
 import { getClient } from '~/lib/sanity/client';
@@ -27,7 +28,31 @@ async function Page(props: { params: { slug: string } }) {
 
       <Text fw={700}>{post.description}</Text>
 
-      <PortableText value={post.body} />
+      <Box>
+        <Box>
+          <PortableText
+            value={post.body}
+            components={{
+              marks: {
+                code: ({ children }) => {
+                  return <Code>{children}</Code>;
+                },
+                codeBlock: ({ value, text }) => {
+                  return (
+                    <>
+                      <CodeHighlight
+                        language={value.language}
+                        code={text}
+                        withCopyButton={false}
+                      />
+                    </>
+                  );
+                },
+              },
+            }}
+          />
+        </Box>
+      </Box>
     </Stack>
   );
 }

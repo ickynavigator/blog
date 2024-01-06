@@ -1,3 +1,4 @@
+import '@mantine/code-highlight/styles.css';
 import '@mantine/core/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
