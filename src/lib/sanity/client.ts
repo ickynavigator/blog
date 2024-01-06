@@ -1,6 +1,5 @@
-import { createClient } from '@sanity-typed/next-sanity';
+import { createClient } from 'next-sanity';
 import config from '~/lib/sanity/config';
-import type { SanityValues } from '../../../sanity.config';
 
 const { apiVersion, dataset, projectId, useCdn } = config;
 const clientBaseConfig = {
@@ -12,13 +11,13 @@ const clientBaseConfig = {
 } as const;
 
 export function getClient() {
-  const client = createClient<SanityValues>()(clientBaseConfig);
+  const client = createClient(clientBaseConfig);
 
   return client;
 }
 
 export function getPreviewClient(token: string) {
-  const client = createClient<SanityValues>()({
+  const client = createClient({
     ...clientBaseConfig,
     token,
     useCdn: false,
