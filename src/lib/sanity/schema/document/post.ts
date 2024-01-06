@@ -13,22 +13,24 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      validation: Rule => Rule.required(),
       options: {
         source: 'title',
         maxLength: 96,
       },
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'postedAt',
       title: 'Posted at',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'tags',
@@ -47,6 +49,7 @@ export default defineType({
       title: 'Description',
       type: 'text',
       rows: 3,
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'mainImage',
@@ -55,11 +58,13 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
+      validation: Rule => Rule.required(),
     }),
   ],
   preview: {
