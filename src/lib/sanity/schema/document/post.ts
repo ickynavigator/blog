@@ -1,4 +1,8 @@
-import { defineField, defineType } from '@sanity-typed/types';
+import {
+  defineArrayMember,
+  defineField,
+  defineType,
+} from '@sanity-typed/types';
 
 export default defineType({
   name: 'post',
@@ -21,10 +25,9 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'text',
-      rows: 4,
+      name: 'description',
+      title: 'Description',
+      type: 'string',
     }),
     defineField({
       name: 'mainImage',
@@ -39,16 +42,32 @@ export default defineType({
       title: 'Body',
       type: 'blockContent',
     }),
+    defineField({
+      name: 'postedAt',
+      title: 'Posted at',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'reference',
+          to: [{ type: 'category' as const }],
+        }),
+      ],
+      validation: Rule => Rule.unique(),
+    }),
   ],
   preview: {
     select: {
       title: 'title',
-      author: 'author.name',
       media: 'mainImage',
     },
     prepare(selection) {
-      const { author } = selection;
-      return { ...selection, subtitle: author && `by ${author}` };
+      return { ...selection };
     },
   },
 });
