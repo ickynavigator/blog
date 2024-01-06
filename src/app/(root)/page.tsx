@@ -11,6 +11,7 @@ import Link from 'next/link';
 import PostPagination from '~/components/pagination/post.pagination';
 import PostCard from '~/components/postCard';
 import { getClient } from '~/lib/sanity/client';
+import { SanityValues } from '../../../sanity.config';
 import classes from './page.module.css';
 
 const client = getClient();
@@ -46,7 +47,7 @@ export default async function Home({
       </Text>
 
       <Group>
-        {categories.map(category => (
+        {categories.map((category: SanityValues['category']) => (
           <Anchor
             key={category._id}
             href={`/tag/${category.slug.current}`}
@@ -61,7 +62,7 @@ export default async function Home({
       </Group>
 
       <SimpleGrid cols={3}>
-        {posts.map(post => (
+        {posts.map((post: SanityValues['post']) => (
           <PostCard key={post._id} {...post} />
         ))}
       </SimpleGrid>
