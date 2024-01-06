@@ -8,8 +8,13 @@ const portfolioLink = 'https://obifortune.com';
 
 const Footer = () => {
   return (
-    <footer className={classes.footer}>
-      <Group justify="space-between" h="100%">
+    <>
+      <Group
+        justify="space-between"
+        component="footer"
+        py="md"
+        className={classes.footer}
+      >
         <Text>
           Obi Fortune | Copyright © {new Date().getFullYear()}. All rights
           reserved.
@@ -44,7 +49,7 @@ const Footer = () => {
           </Anchor>
         </Group>
       </Group>
-    </footer>
+    </>
   );
 };
 
