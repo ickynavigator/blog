@@ -14,10 +14,6 @@ const clientBaseConfig = {
 export function getClient() {
   const client = createClient<SanityValues>()(clientBaseConfig);
 
-  const query = `*[_type=="post"]`;
-  const d = client.fetch(query);
-  //    ^?
-
   return client;
 }
 
