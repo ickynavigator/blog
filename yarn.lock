@@ -1254,6 +1254,19 @@
   dependencies:
     "@t3-oss/env-core" "0.7.1"
 
+"@tabler/icons-react@^2.45.0":
+  version "2.45.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-react/-/icons-react-2.45.0.tgz#5d5ae78782b403b9115fbc37be1ba4756847ae8e"
+  integrity sha512-1vSBsHnBi9AfMILeJQrQo1XIHtFOxuWNGOeIvNHpDcBXyFTfVvDuh64PjMl57xCh5y/PlQlu3Hpx9vSkpSYXYQ==
+  dependencies:
+    "@tabler/icons" "2.45.0"
+    prop-types "^15.7.2"
+
+"@tabler/icons@2.45.0":
+  version "2.45.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-2.45.0.tgz#c6dff8df5b33492b832a65b778e8be4b45eed739"
+  integrity sha512-J10UDghOni9wlrj5CpKAzychDCABCKYq897mGg0wGFsd+tYLaUdz0dt/HZeGnV8gZJo0hIiTPLGwBp5EW42Qsg==
+
 "@tanstack/react-virtual@3.0.0-beta.54":
   version "3.0.0-beta.54"
   resolved "https://registry.yarnpkg.com/@tanstack/react-virtual/-/react-virtual-3.0.0-beta.54.tgz#755979455adf13f2584937204a3f38703e446037"
