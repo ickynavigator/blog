@@ -1,12 +1,35 @@
 import { CodeHighlight } from '@mantine/code-highlight';
-import { Box, Code, Group, Image, Stack, Text, Title } from '@mantine/core';
-import { PortableText } from '@portabletext/react';
+import { Code, Group, Image, Stack, Text, Title } from '@mantine/core';
+import { PortableText, PortableTextReactComponents } from '@portabletext/react';
 import { formatDate } from '~/lib/date';
 import { getClient } from '~/lib/sanity/client';
 import { urlForImage } from '~/lib/sanity/image';
 import { SanityValues } from '../../../../../sanity.config';
 
 const client = getClient();
+
+const PTCustomComponents: Partial<PortableTextReactComponents> = {
+  // hardBreak: false,
+  block: {
+    normal: ({ children }) => <Text>{children}</Text>,
+    code: ({ children }) => <>{children}</>,
+  },
+
+  marks: {
+    code: ({ children }) => {
+      return <Code>{children}</Code>;
+    },
+    codeBlock: ({ value, text }) => {
+      return (
+        <CodeHighlight
+          language={value.language}
+          code={text}
+          withCopyButton={false}
+        />
+      );
+    },
+  },
+};
 
 async function Page(props: { params: { slug: string } }) {
   const { slug } = props.params;
@@ -28,31 +51,7 @@ async function Page(props: { params: { slug: string } }) {
 
       <Text fw={700}>{post.description}</Text>
 
-      <Box>
-        <Box>
-          <PortableText
-            value={post.body}
-            components={{
-              marks: {
-                code: ({ children }) => {
-                  return <Code>{children}</Code>;
-                },
-                codeBlock: ({ value, text }) => {
-                  return (
-                    <>
-                      <CodeHighlight
-                        language={value.language}
-                        code={text}
-                        withCopyButton={false}
-                      />
-                    </>
-                  );
-                },
-              },
-            }}
-          />
-        </Box>
-      </Box>
+      <PortableText value={post.body} components={PTCustomComponents} />
     </Stack>
   );
 }
