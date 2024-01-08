@@ -36,6 +36,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           theme={{
             ...theme,
             primaryColor: value,
+            fontFamily: bricolage.style.fontFamily,
           }}
         >
           {children}
