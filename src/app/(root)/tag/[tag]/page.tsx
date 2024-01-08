@@ -1,15 +1,30 @@
 import { Center, SimpleGrid, Stack, Title } from '@mantine/core';
+import { Metadata } from 'next';
 import PostPagination from '~/components/pagination/post.pagination';
 import PostCard from '~/components/postCard';
 import { getClient } from '~/lib/sanity/client';
 import { SanityValues } from '../../../../../sanity.config';
 
-const client = getClient();
-const ITEMS_PER_PAGE = 10;
-export default async function Page(props: {
+type Props = {
   params: { tag: string };
   searchParams: { p: string | undefined };
-}) {
+};
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
+  const tag = params.tag;
+  const pageNumber = Number(searchParams.p) || 1;
+
+  return {
+    title: `#${tag}`,
+  };
+}
+
+const client = getClient();
+const ITEMS_PER_PAGE = 10;
+export default async function Page(props: Props) {
   const pageNumber = Number(props.searchParams.p) || 1;
 
   const _POSTS_FRAGMENT = /* groq */ `*[_type=="post" && $tag in tags[]->slug.current]`;
