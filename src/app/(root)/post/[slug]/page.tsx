@@ -1,6 +1,7 @@
 import { Center, Group, Image, Stack, Text, Title } from '@mantine/core';
 import { PortableText } from '@portabletext/react';
 import { Metadata, ResolvingMetadata } from 'next';
+import CategoryList from '~/components/categorylist';
 import { formatDate } from '~/lib/date';
 import { portableTextCustomComponents as PTCustomComponents } from '~/lib/portableText';
 import { getClient } from '~/lib/sanity/client';
@@ -79,10 +80,10 @@ export async function generateStaticParams() {
 
 async function Page(props: Props) {
   const { slug } = props.params;
-  const PAGE_FRAGMENT = /* groq */ `*[_type == "post" && slug.current == $slug][0]`;
-  const post = (await client.fetch(PAGE_FRAGMENT, {
+  const PAGE_FRAGMENT = /* groq */ `*[_type == "post" && slug.current == $slug][0]{..., "tags": tags[]->}`;
+  const post = await client.fetch(PAGE_FRAGMENT, {
     slug,
-  })) as SanityValues['post'];
+  });
 
   if (!post) {
     return (
@@ -104,6 +105,8 @@ async function Page(props: Props) {
         <Title order={1}>{post.title}</Title>
         <Text c="dimmed">{formatDate(new Date(post.postedAt))}</Text>
       </Group>
+
+      <CategoryList categories={post.tags} />
 
       <Image src={img} alt={`main image for ${post.title}`} radius="lg" />
 
