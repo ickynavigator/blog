@@ -100,7 +100,7 @@ async function Page(props: Props) {
   const img = urlForImage(post.mainImage)?.url();
 
   return (
-    <Stack my="md">
+    <Stack>
       <Group justify="space-between" align="flex-end">
         <Title order={1}>{post.title}</Title>
         <Text c="dimmed">{formatDate(new Date(post.postedAt))}</Text>
