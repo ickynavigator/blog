@@ -5,7 +5,6 @@ import { SanityDocument } from 'sanity';
 import { Iframe } from 'sanity-plugin-iframe-pane';
 import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
 import { deskTool } from 'sanity/desk';
-import { presentationTool } from 'sanity/presentation';
 import config from '~/lib/sanity/config';
 import { schema } from '~/lib/sanity/schema';
 
@@ -62,15 +61,6 @@ const sanityConfig = defineConfig({
       },
     }),
     visionTool({ defaultApiVersion }),
-    presentationTool({
-      previewUrl: {
-        origin: location.origin,
-        draftMode: {
-          enable: '/api/draft',
-          disable: '/api/disable-draft',
-        },
-      },
-    }),
     vercelDeployTool(),
   ],
 });
