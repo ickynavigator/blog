@@ -17,7 +17,7 @@ const bricolage = Bricolage_Grotesque({
 function Layout({ children }: { children: React.ReactNode }) {
   const [value] = useLocalStorage({
     key: COLOR_STORAGE_KEY,
-    defaultValue: 'blue',
+    defaultValue: 'blue-gray',
   });
 
   return (
