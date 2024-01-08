@@ -1,29 +1,15 @@
 import { createClient } from 'next-sanity';
+import { env } from '~/env/server.mjs';
 import config from '~/lib/sanity/config';
 
-const { apiVersion, dataset, projectId, useCdn } = config;
-const clientBaseConfig = {
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn,
+const client = createClient({
+  projectId: config.projectId,
+  dataset: config.dataset,
+  apiVersion: config.apiVersion,
+  useCdn: env.SANITY_REVALIDATE_SECRET ? false : true,
   perspective: 'published',
-} as const;
+});
 
 export function getClient() {
-  const client = createClient(clientBaseConfig);
-
-  return client;
-}
-
-export function getPreviewClient(token: string) {
-  const client = createClient({
-    ...clientBaseConfig,
-    token,
-    useCdn: false,
-    ignoreBrowserTokenWarning: true,
-    perspective: 'previewDrafts',
-  });
-
   return client;
 }
