@@ -1,4 +1,4 @@
-import { Group, Image, Stack, Text, Title } from '@mantine/core';
+import { Center, Group, Image, Stack, Text, Title } from '@mantine/core';
 import { PortableText } from '@portabletext/react';
 import { Metadata, ResolvingMetadata } from 'next';
 import { formatDate } from '~/lib/date';
@@ -21,6 +21,14 @@ export async function generateMetadata(
   const post = (await client.fetch(META_FRAGMENT, {
     slug,
   })) as SanityValues['post'];
+
+  if (!post) {
+    return {
+      title: 'Not Found',
+      description:
+        "Looks like that post either doesn't exist or it has been taken down",
+    };
+  }
 
   const img = urlForImage(post.mainImage)?.url();
   const ogImages = (await parent).openGraph?.images || [];
@@ -75,6 +83,18 @@ async function Page(props: Props) {
   const post = (await client.fetch(PAGE_FRAGMENT, {
     slug,
   })) as SanityValues['post'];
+
+  if (!post) {
+    return (
+      <Center h="100%">
+        <Title order={1}>
+          {
+            "Looks like that post either doesn't exist or it has been taken down"
+          }
+        </Title>
+      </Center>
+    );
+  }
 
   const img = urlForImage(post.mainImage)?.url();
 
