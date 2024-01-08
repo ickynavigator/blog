@@ -51,7 +51,7 @@ export default async function Page(props: Props) {
         />
       </Center>
 
-      <SimpleGrid cols={3}>
+      <SimpleGrid cols={{ base: 2, md: 3 }}>
         {posts.map((post: SanityValues['post']) => (
           <PostCard key={post._id} {...post} />
         ))}
