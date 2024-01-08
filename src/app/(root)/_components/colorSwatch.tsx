@@ -42,10 +42,7 @@ const ColorMenu = (props: IColorMenuProps) => {
 };
 
 const ColorSwatch = () => {
-  const [value, setValue] = useLocalStorage({
-    key: COLOR_STORAGE_KEY,
-    defaultValue: 'blue',
-  });
+  const [value, setValue] = useLocalStorage({ key: COLOR_STORAGE_KEY });
   return (
     <Menu withArrow shadow="md" position="left-start" trigger="click-hover">
       <MenuTarget>
