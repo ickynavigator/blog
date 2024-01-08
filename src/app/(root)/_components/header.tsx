@@ -1,6 +1,5 @@
 import { Anchor, Group, Title } from '@mantine/core';
 import Link from 'next/link';
-import ColorSwatch from './colorSwatch';
 import ThemeSwatch from './themeSwatch';
 
 const Header = () => {
@@ -12,7 +11,8 @@ const Header = () => {
         </Anchor>
 
         <Group>
-          <ColorSwatch />
+          {/* disabled color swatch till i can find a way to stop FART */}
+          {/* <ColorSwatch /> */}
           <ThemeSwatch />
         </Group>
       </Group>

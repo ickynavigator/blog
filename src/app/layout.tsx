@@ -5,7 +5,8 @@ import '@mantine/core/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
 import { Bricolage_Grotesque } from 'next/font/google';
-import { COLOR_STORAGE_KEY } from '~/lib/colors';
+import colors, { COLOR_STORAGE_KEY } from '~/lib/colors';
+import { randomProperty } from '~/lib/general';
 import theme from '~/lib/mantine';
 
 const bricolage = Bricolage_Grotesque({
@@ -14,10 +15,18 @@ const bricolage = Bricolage_Grotesque({
   adjustFontFallback: false,
 });
 
+const randomScheme = randomProperty(colors);
+
 function Layout({ children }: { children: React.ReactNode }) {
-  const [value] = useLocalStorage({
+  /**
+   * refer to the message above the color swatch comment in the header
+   * component for more info on why this is disabled
+   *
+   * [link](./(root)/_components/header.tsx)
+   */
+  const colorSchemeInfo = useLocalStorage({
     key: COLOR_STORAGE_KEY,
-    defaultValue: 'blue-gray',
+    defaultValue: 'blue',
   });
 
   return (
@@ -35,7 +44,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         <MantineProvider
           theme={{
             ...theme,
-            primaryColor: value,
+            primaryColor: randomScheme[0],
             fontFamily: bricolage.style.fontFamily,
           }}
         >
