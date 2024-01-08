@@ -1,18 +1,9 @@
-import {
-  Anchor,
-  Badge,
-  Center,
-  Group,
-  SimpleGrid,
-  Stack,
-  Text,
-} from '@mantine/core';
-import Link from 'next/link';
+import { Center, SimpleGrid, Stack, Text } from '@mantine/core';
+import CategoryList from '~/components/categorylist';
 import PostPagination from '~/components/pagination/post.pagination';
 import PostCard from '~/components/postCard';
 import { getClient } from '~/lib/sanity/client';
 import { SanityValues } from '../../../sanity.config';
-import classes from './page.module.css';
 
 export const dynamic = 'force-dynamic';
 const client = getClient();
@@ -47,20 +38,7 @@ export default async function Home({
         tutorials (hopefully)
       </Text>
 
-      <Group>
-        {categories.map((category: SanityValues['category']) => (
-          <Anchor
-            key={category._id}
-            href={`/tag/${category.slug.current}`}
-            component={Link}
-            passHref
-          >
-            <Badge variant="outline" radius="md" className={classes.badge}>
-              {category.title}
-            </Badge>
-          </Anchor>
-        ))}
-      </Group>
+      <CategoryList categories={categories} />
 
       <SimpleGrid cols={3}>
         {posts.map((post: SanityValues['post']) => (
