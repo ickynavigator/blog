@@ -15,10 +15,7 @@ const Footer = () => {
         py="md"
         className={classes.footer}
       >
-        <Text>
-          Obi Fortune | Copyright © {new Date().getFullYear()}. All rights
-          reserved.
-        </Text>
+        <Text>Obi Fortune | © {new Date().getFullYear()}</Text>
 
         <Group gap="5">
           <Anchor
