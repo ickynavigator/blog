@@ -22,6 +22,15 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  const _POSTS_FRAGMENT = /* groq */ `*[_type=="category"]{ "slug": slug.current }`;
+  const slugs = (await client.fetch(_POSTS_FRAGMENT)) as { slug: string }[];
+
+  return slugs.map(({ slug }) => ({
+    params: { tag: slug },
+  }));
+}
+
 const client = getClient();
 const ITEMS_PER_PAGE = 10;
 export default async function Page(props: Props) {
