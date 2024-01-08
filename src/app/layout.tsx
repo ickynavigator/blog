@@ -15,8 +15,6 @@ const bricolage = Bricolage_Grotesque({
   adjustFontFallback: false,
 });
 
-const randomScheme = randomProperty(colors);
-
 function Layout({ children }: { children: React.ReactNode }) {
   /**
    * refer to the message above the color swatch comment in the header
@@ -28,6 +26,8 @@ function Layout({ children }: { children: React.ReactNode }) {
     key: COLOR_STORAGE_KEY,
     defaultValue: 'blue',
   });
+
+  const randomScheme = randomProperty(colors);
 
   return (
     <html lang="en">
