@@ -1,6 +1,7 @@
 import type { InferSchemaValues } from '@sanity-typed/types';
 import { defineConfig } from '@sanity-typed/types';
 import { visionTool } from '@sanity/vision';
+import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
 import { deskTool } from 'sanity/desk';
 import config from '~/lib/sanity/config';
 import { schema } from '~/lib/sanity/schema';
@@ -15,7 +16,7 @@ const sanityConfig = defineConfig({
   schema: {
     types: schema,
   },
-  plugins: [deskTool(), visionTool({ defaultApiVersion })],
+  plugins: [deskTool(), visionTool({ defaultApiVersion }), vercelDeployTool()],
 });
 
 export type SanityValues = InferSchemaValues<typeof sanityConfig>;
