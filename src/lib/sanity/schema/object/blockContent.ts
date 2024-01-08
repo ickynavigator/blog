@@ -25,7 +25,7 @@ export default defineType({
         { title: 'H5', value: 'h5' as const },
         { title: 'H6', value: 'h6' as const },
         { title: 'Quote', value: 'blockquote' as const },
-        { title: 'Code', value: 'code' as const },
+        { title: 'Unstyled', value: 'unstyled' as const },
       ],
       lists: [
         { title: 'Bullet', value: 'bullet' as const },
