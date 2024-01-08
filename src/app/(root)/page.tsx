@@ -5,7 +5,6 @@ import PostCard from '~/components/postCard';
 import { getClient } from '~/lib/sanity/client';
 import { SanityValues } from '../../../sanity.config';
 
-export const dynamic = 'force-dynamic';
 const client = getClient();
 const ITEMS_PER_PAGE = 10;
 export default async function Home({

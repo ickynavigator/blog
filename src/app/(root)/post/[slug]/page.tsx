@@ -68,7 +68,7 @@ export async function generateMetadata(
     },
   };
 }
-export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
   const _POSTS_FRAGMENT = /* groq */ `*[_type=="post"]{ "slug": slug.current }`;
   const slugs = (await client.fetch(_POSTS_FRAGMENT)) as { slug: string }[];
