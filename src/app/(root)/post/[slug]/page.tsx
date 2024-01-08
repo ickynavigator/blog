@@ -73,9 +73,7 @@ export async function generateStaticParams() {
   const _POSTS_FRAGMENT = /* groq */ `*[_type=="post"]{ "slug": slug.current }`;
   const slugs = (await client.fetch(_POSTS_FRAGMENT)) as { slug: string }[];
 
-  return slugs.map(({ slug }) => ({
-    params: { slug },
-  }));
+  return slugs.map(({ slug }) => ({ params: { slug } }));
 }
 
 async function Page(props: Props) {

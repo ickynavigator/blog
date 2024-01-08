@@ -7,7 +7,7 @@ import { SanityValues } from '../../../sanity.config';
 
 const client = getClient();
 const ITEMS_PER_PAGE = 10;
-export default async function Home({
+async function Page({
   searchParams,
 }: {
   searchParams: { p: string | undefined };
@@ -54,3 +54,5 @@ export default async function Home({
     </Stack>
   );
 }
+
+export default Page;

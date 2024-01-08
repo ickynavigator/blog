@@ -19,10 +19,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const client = getClient();
-const ITEMS_PER_PAGE = 10;
-export default async function Page(props: Props) {
+async function Page(props: Props) {
   const pageNumber = Number(props.searchParams.p) || 1;
 
+  const ITEMS_PER_PAGE = 10;
   const _POSTS_FRAGMENT = /* groq */ `*[_type=="post" && $tag in tags[]->slug.current]`;
   const POSTS_FRAGMENT = /* groq */ `{
       'posts':  ${_POSTS_FRAGMENT}   
@@ -66,3 +66,5 @@ export default async function Page(props: Props) {
     </Stack>
   );
 }
+
+export default Page;
