@@ -1,0 +1,11 @@
+.card {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    /* box-shadow:
+      0 0 1px 2px var(--mantine-primary-color-3),
+      0 4px 24px -2px var(--mantine-primary-color-5),
+      0 6px 36px var(--mantine-primary-color-7); */
+  }
+}
