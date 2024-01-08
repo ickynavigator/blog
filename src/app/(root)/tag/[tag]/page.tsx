@@ -10,25 +10,12 @@ type Props = {
   searchParams: { p: string | undefined };
 };
 
-export async function generateMetadata({
-  params,
-  searchParams,
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tag = params.tag;
-  const pageNumber = Number(searchParams.p) || 1;
 
   return {
     title: `#${tag}`,
   };
-}
-
-export async function generateStaticParams() {
-  const _POSTS_FRAGMENT = /* groq */ `*[_type=="category"]{ "slug": slug.current }`;
-  const slugs = (await client.fetch(_POSTS_FRAGMENT)) as { slug: string }[];
-
-  return slugs.map(({ slug }) => ({
-    params: { tag: slug },
-  }));
 }
 
 const client = getClient();
