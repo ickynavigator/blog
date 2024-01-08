@@ -2,6 +2,7 @@
 
 import { Loader, createTheme } from '@mantine/core';
 import { SpinningCoinLoader } from '~/components/loader';
+import colors from './colors';
 
 const theme = createTheme({
   components: {
@@ -13,6 +14,9 @@ const theme = createTheme({
         },
       },
     }),
+  },
+  colors: {
+    ...colors,
   },
 });
 

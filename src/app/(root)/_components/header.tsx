@@ -1,5 +1,6 @@
 import { Anchor, Group, Title } from '@mantine/core';
 import Link from 'next/link';
+import ColorSwatch from './colorSwatch';
 import ThemeSwatch from './themeSwatch';
 
 const Header = () => {
@@ -10,7 +11,10 @@ const Header = () => {
           <Title>Obi Fortune</Title>
         </Anchor>
 
-        <ThemeSwatch />
+        <Group>
+          <ColorSwatch />
+          <ThemeSwatch />
+        </Group>
       </Group>
     </>
   );

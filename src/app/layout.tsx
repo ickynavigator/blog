@@ -1,9 +1,11 @@
+'use client';
 import '@mantine/code-highlight/styles.css';
 import '@mantine/core/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
-import type { Metadata } from 'next';
+import { useLocalStorage } from '@mantine/hooks';
 import { Bricolage_Grotesque } from 'next/font/google';
+import { COLOR_STORAGE_KEY } from '~/lib/colors';
 import theme from '~/lib/mantine';
 
 const bricolage = Bricolage_Grotesque({
@@ -12,12 +14,12 @@ const bricolage = Bricolage_Grotesque({
   adjustFontFallback: false,
 });
 
-export const metadata: Metadata = {
-  title: "Fortune's Blog",
-  description: "Fortune's Blog",
-};
-
 function Layout({ children }: { children: React.ReactNode }) {
+  const [value] = useLocalStorage({
+    key: COLOR_STORAGE_KEY,
+    defaultValue: 'blue',
+  });
+
   return (
     <html lang="en">
       <head>
@@ -30,7 +32,14 @@ function Layout({ children }: { children: React.ReactNode }) {
           minHeight: '100%',
         }}
       >
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider
+          theme={{
+            ...theme,
+            primaryColor: value,
+          }}
+        >
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );
