@@ -12,9 +12,7 @@ const getPreviewUrl = (doc: SanityDocument) => {
   const slug = doc?.slug;
 
   if (typeof slug == 'object' && slug != undefined && 'current' in slug) {
-    return slug?.current
-      ? `${window.location.host}/post/${slug.current}`
-      : `${window.location.host}`;
+    return slug?.current ? `/post/${slug.current}` : ``;
   }
 
   throw new Error('The document must have a slug before it can be previewed.');
