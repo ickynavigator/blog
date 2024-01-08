@@ -15,15 +15,17 @@ export const ThemeSwatch = () => {
   const computedColorScheme = useComputedColorScheme('light', {
     getInitialValueInEffect: true,
   });
+  const toggleColorScheme = () => {
+    setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light');
+  };
 
   return (
     <ActionIcon
-      onClick={() =>
-        setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')
-      }
-      variant="default"
+      onClick={toggleColorScheme}
       size="md"
       aria-label="Toggle color scheme"
+      color={computedColorScheme === 'dark' ? 'yellow' : 'gray'}
+      variant="outline"
     >
       <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
       <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />

@@ -27,7 +27,7 @@ const Footer = () => {
             passHref
             target="_blank"
           >
-            <ActionIcon size="lg" color="gray" variant="subtle">
+            <ActionIcon size="lg" variant="subtle">
               <IconUser
                 style={{ width: rem(18), height: rem(18) }}
                 stroke={1.5}
@@ -40,7 +40,7 @@ const Footer = () => {
             passHref
             target="_blank"
           >
-            <ActionIcon size="lg" color="gray" variant="subtle">
+            <ActionIcon size="lg" variant="subtle">
               <IconBrandGithub
                 style={{ width: rem(18), height: rem(18) }}
                 stroke={1.5}

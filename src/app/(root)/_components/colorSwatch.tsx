@@ -46,7 +46,7 @@ const ColorSwatch = () => {
   return (
     <Menu withArrow shadow="md" position="left-start" trigger="click-hover">
       <MenuTarget>
-        <ActionIcon variant="default" size="md" aria-label="Change Site color">
+        <ActionIcon size="md" aria-label="Change Site color" variant="outline">
           <IconColorSwatch className={cx(classes.icon)} stroke={1.5} />
         </ActionIcon>
       </MenuTarget>
