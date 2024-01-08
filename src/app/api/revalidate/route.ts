@@ -23,7 +23,7 @@
  */
 
 import { parseBody } from 'next-sanity/webhook';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { NextResponse, type NextRequest } from 'next/server';
 import { env } from '~/env/server.mjs';
 
@@ -39,14 +39,8 @@ export async function POST(req: NextRequest) {
       return new Response(message, { status: 401 });
     }
 
-    if (!body?._type) {
-      return new Response('Bad Request', { status: 400 });
-    }
+    revalidatePath('/');
 
-    revalidateTag(body._type);
-    if (body.slug) {
-      revalidateTag(`${body._type}:${body.slug}`);
-    }
     return NextResponse.json({
       status: 200,
       revalidated: true,
