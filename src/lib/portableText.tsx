@@ -40,7 +40,9 @@ export const portableTextCustomComponents: Partial<PortableTextReactComponents> 
         </Text>
       ),
       link: ({ children, value }) => (
-        <Anchor href={value?.href}>{children}</Anchor>
+        <Anchor href={value?.URL} target="_blank">
+          {children}
+        </Anchor>
       ),
       'strike-through': ({ children }) => (
         <Text component="del">{children}</Text>
