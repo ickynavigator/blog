@@ -4,9 +4,9 @@ import PostPagination from '~/components/pagination/post.pagination';
 import PostCard from '~/components/postCard';
 import { getClient } from '~/lib/sanity/client';
 import { SanityValues } from '../../../sanity.config';
+import { ITEMS_PER_PAGE } from '~/lib/constants';
 
 const client = getClient();
-const ITEMS_PER_PAGE = 10;
 async function Page({
   searchParams,
 }: {

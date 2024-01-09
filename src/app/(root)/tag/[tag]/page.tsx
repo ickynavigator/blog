@@ -2,6 +2,7 @@ import { Center, SimpleGrid, Stack, Title } from '@mantine/core';
 import { Metadata } from 'next';
 import PostPagination from '~/components/pagination/post.pagination';
 import PostCard from '~/components/postCard';
+import { ITEMS_PER_PAGE } from '~/lib/constants';
 import { getClient } from '~/lib/sanity/client';
 import { SanityValues } from '../../../../../sanity.config';
 
@@ -22,7 +23,6 @@ const client = getClient();
 async function Page(props: Props) {
   const pageNumber = Number(props.searchParams.p) || 1;
 
-  const ITEMS_PER_PAGE = 10;
   const _POSTS_FRAGMENT = /* groq */ `*[_type=="post" && $tag in tags[]->slug.current]`;
   const POSTS_FRAGMENT = /* groq */ `{
       'posts':  ${_POSTS_FRAGMENT}   
