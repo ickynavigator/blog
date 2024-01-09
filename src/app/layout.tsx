@@ -1,6 +1,6 @@
 'use client';
-import '@mantine/code-highlight/styles.css';
 import '@mantine/core/styles.css';
+import '@mantine/code-highlight/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
