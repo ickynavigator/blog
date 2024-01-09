@@ -55,7 +55,11 @@ export const portableTextCustomComponents: Partial<PortableTextReactComponents> 
           <CodeHighlight
             language={value.language}
             code={text}
-            withCopyButton={false}
+            styles={{
+              code: {
+                lineHeight: 'calc(.8125rem*var(--mantine-scale))',
+              },
+            }}
           />
         );
       },
