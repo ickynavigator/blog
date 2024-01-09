@@ -3,12 +3,14 @@ import {
   Anchor,
   Blockquote,
   Code,
+  Image,
   List,
   ListItem,
   Text,
   Title,
 } from '@mantine/core';
 import { PortableTextReactComponents } from '@portabletext/react';
+import { urlForImage } from './sanity/image';
 
 export const portableTextCustomComponents: Partial<PortableTextReactComponents> =
   {
@@ -63,5 +65,11 @@ export const portableTextCustomComponents: Partial<PortableTextReactComponents> 
           />
         );
       },
+    },
+
+    types: {
+      image: ({ value, index }) => (
+        <Image src={urlForImage(value)?.url()} alt={`image no ${index}`} />
+      ),
     },
   };
