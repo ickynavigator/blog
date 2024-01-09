@@ -59,7 +59,7 @@ export const portableTextCustomComponents: Partial<PortableTextReactComponents> 
             code={text}
             styles={{
               code: {
-                lineHeight: 'calc(.8125rem*var(--mantine-scale))',
+                lineHeight: 'calc(.9rem*var(--mantine-scale))',
               },
             }}
           />
