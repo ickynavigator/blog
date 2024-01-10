@@ -2,12 +2,22 @@ import { Center, SimpleGrid, Stack, Title } from '@mantine/core';
 import { Metadata } from 'next';
 import PostPagination from '~/components/pagination/post.pagination';
 import PostCard from '~/components/postCard';
-import { CATCH_ALL_TAG, ITEMS_PER_PAGE } from '~/lib/constants';
+import {
+  CATCH_ALL_TAG,
+  ITEMS_PER_PAGE,
+  PREGEN_PAGE_COUNT,
+} from '~/lib/constants';
 import { getClient } from '~/lib/sanity/client';
 import { SanityValues } from '../../../../../../sanity.config';
 
 type Props = {
-  params: { tag: string; q?: string[] };
+  params: {
+    tag: string;
+    /**
+     * first element is the page number
+     */
+    q?: string[];
+  };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -22,7 +32,17 @@ export async function generateStaticParams() {
   const CATEGORIES_FRAGMENT = /* groq */ `*[_type == "category"]{ "tag": slug.current }`;
   const slugs = (await client.fetch(CATEGORIES_FRAGMENT)) as { tag: string }[];
 
-  return slugs.map(({ tag }) => ({ params: { tag } }));
+  const stat: Props[] = [];
+
+  slugs.forEach(({ tag }) => {
+    stat.push({ params: { tag } });
+
+    for (let i = 1; i <= PREGEN_PAGE_COUNT; i++) {
+      stat.push({ params: { tag, q: [`${i}`] } });
+    }
+  });
+
+  return stat;
 }
 
 const client = getClient();
