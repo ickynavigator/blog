@@ -1,9 +1,10 @@
 'use client';
-import '@mantine/core/styles.css';
 import '@mantine/code-highlight/styles.css';
+import '@mantine/core/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
+import { Analytics } from '@vercel/analytics/react';
 import { Bricolage_Grotesque } from 'next/font/google';
 import colors, { COLOR_STORAGE_KEY } from '~/lib/colors';
 import { randomProperty } from '~/lib/general';
@@ -50,6 +51,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         >
           {children}
         </MantineProvider>
+        <Analytics />
       </body>
     </html>
   );
