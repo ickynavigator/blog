@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
     }
 
     revalidateTag(BASE_FETCH_TAG);
+    revalidatePath('/');
     revalidatePath('/', 'layout');
 
     return NextResponse.json({
