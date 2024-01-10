@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import PostPagination from '~/components/pagination/post.pagination';
 import PostCard from '~/components/postCard';
 import {
+  BASE_FETCH_TAG,
   CATCH_ALL_TAG,
   ITEMS_PER_PAGE,
   PREGEN_PAGE_COUNT,
@@ -63,10 +64,18 @@ async function Page(props: Props) {
         "pageNumber": $pageIndex + 1,
       }
   }`;
-  const { posts, pagination } = await client.fetch(POSTS_FRAGMENT, {
-    pageIndex: pageNumber - 1,
-    tag,
-  });
+  const { posts, pagination } = await client.fetch(
+    POSTS_FRAGMENT,
+    {
+      pageIndex: pageNumber - 1,
+      tag,
+    },
+    {
+      next: {
+        tags: [BASE_FETCH_TAG],
+      },
+    },
+  );
 
   return (
     <Stack>
