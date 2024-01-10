@@ -41,7 +41,9 @@ export async function POST(req: NextRequest) {
     // }
 
     revalidateTag(BASE_FETCH_TAG);
-    revalidatePath('/');
+    revalidatePath('/', 'layout');
+    // revalidatePath('/(root)/tag/[tag]');
+    // revalidatePath('/(root)/post/[slug]/[[...q]]/page.tsx');
 
     return NextResponse.json({
       status: 200,
