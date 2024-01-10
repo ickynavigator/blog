@@ -23,9 +23,10 @@
  */
 
 import { parseBody } from 'next-sanity/webhook';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { NextResponse, type NextRequest } from 'next/server';
 import { env } from '~/env/server.mjs';
+import { BASE_FETCH_TAG } from '~/lib/constants';
 
 export async function POST(req: NextRequest) {
   try {
@@ -39,6 +40,7 @@ export async function POST(req: NextRequest) {
       return new Response(message, { status: 401 });
     }
 
+    revalidateTag(BASE_FETCH_TAG);
     revalidatePath('/');
 
     return NextResponse.json({
