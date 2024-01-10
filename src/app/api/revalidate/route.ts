@@ -35,15 +35,13 @@ export async function POST(req: NextRequest) {
       env.SANITY_REVALIDATE_SECRET,
     );
 
-    // if (!isValidSignature) {
-    //   const message = 'Invalid signature';
-    //   return new Response(message, { status: 401 });
-    // }
+    if (!isValidSignature) {
+      const message = 'Invalid signature';
+      return new Response(message, { status: 401 });
+    }
 
     revalidateTag(BASE_FETCH_TAG);
     revalidatePath('/', 'layout');
-    // revalidatePath('/(root)/tag/[tag]');
-    // revalidatePath('/(root)/post/[slug]/[[...q]]/page.tsx');
 
     return NextResponse.json({
       status: 200,
