@@ -5,6 +5,7 @@ import Pagination from '.';
 interface ITagPagination {
   total: number;
   current: number;
+  tag: string;
 }
 
 const PostPagination = (props: ITagPagination) => {
@@ -12,9 +13,7 @@ const PostPagination = (props: ITagPagination) => {
     <Pagination
       total={props.total}
       current={props.current}
-      builder={p => {
-        return `/?p=${p}`;
-      }}
+      builder={p => `/tag/${props.tag}/${p}`}
     />
   );
 };
