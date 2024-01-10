@@ -30,15 +30,15 @@ import { BASE_FETCH_TAG } from '~/lib/constants';
 
 export async function POST(req: NextRequest) {
   try {
-    const { body, isValidSignature } = await parseBody<{
-      _type: string;
-      slug?: string | undefined;
-    }>(req, env.SANITY_REVALIDATE_SECRET);
+    const { body, isValidSignature } = await parseBody(
+      req,
+      env.SANITY_REVALIDATE_SECRET,
+    );
 
-    if (!isValidSignature) {
-      const message = 'Invalid signature';
-      return new Response(message, { status: 401 });
-    }
+    // if (!isValidSignature) {
+    //   const message = 'Invalid signature';
+    //   return new Response(message, { status: 401 });
+    // }
 
     revalidateTag(BASE_FETCH_TAG);
     revalidatePath('/');
