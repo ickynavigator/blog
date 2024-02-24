@@ -21,12 +21,12 @@ function Layout({ children }: { children: React.ReactNode }) {
   // const randomScheme = randomProperty(colors);
 
   return (
-    <html lang="en">
+    <html lang="en" style={{ height: '100%' }}>
       <head>
         <ColorSchemeScript />
       </head>
 
-      <body style={{ minHeight: '100%' }}>
+      <body style={{ height: '100%' }}>
         <MantineProvider
           theme={{
             ...theme,
