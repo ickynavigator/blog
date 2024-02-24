@@ -1,4 +1,4 @@
-import { env } from '~/env/client.mjs';
+import { env } from '~/env';
 
 const config = {
   dataset: env.NEXT_PUBLIC_SANITY_DATASET,

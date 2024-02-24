@@ -1,7 +1,7 @@
 import { validatePreviewUrl } from '@sanity/preview-url-secret';
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { env } from '~/env/server.mjs';
+import { env } from '~/env';
 import { getClient } from '~/lib/sanity/client';
 
 const client = getClient();

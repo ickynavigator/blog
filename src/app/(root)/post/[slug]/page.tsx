@@ -50,6 +50,7 @@ export async function generateMetadata(
   return {
     title: post.title,
     description: post.description,
+    // metadataBase: env.
     openGraph: {
       type: 'article',
       title: post.title,

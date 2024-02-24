@@ -25,7 +25,7 @@
 import { parseBody } from 'next-sanity/webhook';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { NextResponse, type NextRequest } from 'next/server';
-import { env } from '~/env/server.mjs';
+import { env } from '~/env';
 import { BASE_FETCH_TAG } from '~/lib/constants';
 
 export async function POST(req: NextRequest) {

@@ -1,5 +1,5 @@
 import { createClient } from 'next-sanity';
-import { env } from '~/env/server.mjs';
+import { env } from '~/env';
 import config from '~/lib/sanity/config';
 
 const client = createClient({
