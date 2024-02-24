@@ -3,6 +3,7 @@
 import { Loader, createTheme } from '@mantine/core';
 import { SpinningCoinLoader } from '~/components/loader';
 import colors from './colors';
+import { bricolage } from './font';
 
 const theme = createTheme({
   components: {
@@ -18,6 +19,7 @@ const theme = createTheme({
   colors: {
     ...colors,
   },
+  fontFamily: bricolage.style.fontFamily,
 });
 
 export default theme;

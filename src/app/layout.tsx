@@ -3,18 +3,8 @@ import '@mantine/code-highlight/styles.css';
 import '@mantine/core/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
-import { useLocalStorage } from '@mantine/hooks';
 import { Analytics } from '@vercel/analytics/react';
-import { Bricolage_Grotesque } from 'next/font/google';
-import colors, { COLOR_STORAGE_KEY } from '~/lib/colors';
-import { randomProperty } from '~/lib/general';
 import theme from '~/lib/mantine';
-
-const bricolage = Bricolage_Grotesque({
-  subsets: ['latin'],
-  display: 'swap',
-  adjustFontFallback: false,
-});
 
 function Layout({ children }: { children: React.ReactNode }) {
   /**
@@ -23,12 +13,12 @@ function Layout({ children }: { children: React.ReactNode }) {
    *
    * [link](./(root)/_components/header.tsx)
    */
-  const colorSchemeInfo = useLocalStorage({
-    key: COLOR_STORAGE_KEY,
-    defaultValue: 'blue',
-  });
+  // const colorSchemeInfo = useLocalStorage({
+  //   key: COLOR_STORAGE_KEY,
+  //   defaultValue: 'blue',
+  // });
 
-  const randomScheme = randomProperty(colors);
+  // const randomScheme = randomProperty(colors);
 
   return (
     <html lang="en">
@@ -36,17 +26,11 @@ function Layout({ children }: { children: React.ReactNode }) {
         <ColorSchemeScript />
       </head>
 
-      <body
-        className={bricolage.className}
-        style={{
-          minHeight: '100%',
-        }}
-      >
+      <body style={{ minHeight: '100%' }}>
         <MantineProvider
           theme={{
             ...theme,
-            primaryColor: randomScheme[0],
-            fontFamily: bricolage.style.fontFamily,
+            // primaryColor: randomScheme[0],
           }}
         >
           {children}
