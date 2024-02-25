@@ -53,7 +53,7 @@ async function Page(props: Props) {
   const pageNumber = Number(q?.[0]) || 1;
 
   const _POSTS_FRAGMENT = /* groq */ `*[_type=="post"${
-    tag === CATCH_ALL_TAG ? '' : ` && $tag in tags[]->slug.current`
+    tag === CATCH_ALL_TAG ? '' : ` && $postTag in tags[]->slug.current`
   }]`;
   const POSTS_FRAGMENT = /* groq */ `{
       'posts':  ${_POSTS_FRAGMENT}   
@@ -68,7 +68,7 @@ async function Page(props: Props) {
     POSTS_FRAGMENT,
     {
       pageIndex: pageNumber - 1,
-      tag,
+      postTag: tag,
     },
     {
       next: {

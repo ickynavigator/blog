@@ -44,6 +44,7 @@ export default defineType({
             title: 'Code',
             name: 'codeBlock',
             type: 'object',
+            // @ts-ignore - error comes from sanity icon
             icon: CodeBlockIcon,
             fields: [
               defineField({
