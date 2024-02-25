@@ -3,9 +3,10 @@ import { defineConfig } from '@sanity-typed/types';
 import { visionTool } from '@sanity/vision';
 import { SanityDocument } from 'sanity';
 import { Iframe } from 'sanity-plugin-iframe-pane';
-import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
-import { deskTool } from 'sanity/desk';
+import { structureTool } from 'sanity/structure';
+import { presentationTool } from 'sanity/presentation';
 import config from '~/lib/sanity/config';
+import { locate } from '~/lib/sanity/locate';
 import { schema } from '~/lib/sanity/schema';
 
 const getSlug = (doc: SanityDocument) => {
@@ -34,7 +35,7 @@ const sanityConfig = defineConfig({
     types: schema,
   },
   plugins: [
-    deskTool({
+    structureTool({
       defaultDocumentNode: (S, { schemaType }) => {
         switch (schemaType) {
           case `post`:
@@ -61,7 +62,15 @@ const sanityConfig = defineConfig({
       },
     }),
     visionTool({ defaultApiVersion }),
-    vercelDeployTool(),
+    presentationTool({
+      locate,
+      previewUrl: {
+        previewMode: {
+          enable: '/api/preview',
+          disable: '/api/disable-preview',
+        },
+      },
+    }),
   ],
 });
 

@@ -1,12 +1,12 @@
-import { Center, Group, Image, Stack, Text, Title } from '@mantine/core';
-import { PortableText } from '@portabletext/react';
 import { Metadata, ResolvingMetadata } from 'next';
-import CategoryList from '~/components/categorylist';
-import { formatDate } from '~/lib/date';
-import { portableTextCustomComponents as PTCustomComponents } from '~/lib/portableText';
 import { getClient } from '~/lib/sanity/client';
 import { urlForImage } from '~/lib/sanity/image';
 import { SanityValues } from '../../../../../sanity.config';
+import { loadQuery } from '~/lib/sanity/store';
+import { PAGE_FRAGMENT } from '~/app/(root)/post/[slug]/_components/query';
+import PostPreview from '~/app/(root)/post/[slug]/_components/preview';
+import Post from '~/app/(root)/post/[slug]/_components/post';
+import { draftMode } from 'next/headers';
 
 type Props = { params: { slug: string } };
 
@@ -78,40 +78,16 @@ export async function generateStaticParams() {
 
 async function Page(props: Props) {
   const { slug } = props.params;
-  const PAGE_FRAGMENT = /* groq */ `*[_type == "post" && slug.current == $slug][0]{..., "tags": tags[]->}`;
-  const post = await client.fetch(PAGE_FRAGMENT, {
-    slug,
-  });
+  const post = await loadQuery<SanityValues['post']>(
+    PAGE_FRAGMENT,
+    { slug },
+    { perspective: draftMode().isEnabled ? 'previewDrafts' : 'published' },
+  );
 
-  if (!post) {
-    return (
-      <Center h="100%">
-        <Title order={1}>
-          {
-            "Looks like that post either doesn't exist or it has been taken down"
-          }
-        </Title>
-      </Center>
-    );
-  }
-
-  const img = urlForImage(post.mainImage)?.url();
-
-  return (
-    <Stack>
-      <Group justify="space-between" align="flex-end">
-        <Title order={1}>{post.title}</Title>
-        <Text c="dimmed">{formatDate(new Date(post.postedAt))}</Text>
-      </Group>
-
-      <CategoryList categories={post.tags} />
-
-      <Image src={img} alt={`main image for ${post.title}`} radius="lg" />
-
-      <Text fw={700}>{post.description}</Text>
-
-      <PortableText value={post.body} components={PTCustomComponents} />
-    </Stack>
+  return draftMode().isEnabled ? (
+    <PostPreview initial={post} slug={slug} />
+  ) : (
+    <Post post={post.data} />
   );
 }
 

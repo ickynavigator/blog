@@ -1,13 +1,16 @@
 import { createClient } from 'next-sanity';
-import { env } from '~/env';
 import config from '~/lib/sanity/config';
 
 const client = createClient({
   projectId: config.projectId,
   dataset: config.dataset,
   apiVersion: config.apiVersion,
-  useCdn: env.SANITY_REVALIDATE_SECRET ? false : true,
+  useCdn: config.useCdn,
   perspective: 'published',
+  stega: {
+    enabled: false,
+    studioUrl: '/studio',
+  },
 });
 
 export function getClient() {

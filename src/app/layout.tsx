@@ -1,10 +1,11 @@
-'use client';
 import '@mantine/code-highlight/styles.css';
 import '@mantine/core/styles.css';
 
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Analytics } from '@vercel/analytics/react';
 import theme from '~/lib/mantine';
+import LiveVisualEditing from '~/components/liveVisualEditing';
+import { draftMode } from 'next/headers';
 
 function Layout({ children }: { children: React.ReactNode }) {
   /**
@@ -34,6 +35,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           }}
         >
           {children}
+          {draftMode().isEnabled && <LiveVisualEditing />}
         </MantineProvider>
         <Analytics />
       </body>
