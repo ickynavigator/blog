@@ -4,7 +4,7 @@ import { visionTool } from '@sanity/vision';
 import { SanityDocument } from 'sanity';
 import { Iframe } from 'sanity-plugin-iframe-pane';
 import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
-import { deskTool } from 'sanity/desk';
+import { structureTool } from 'sanity/structure';
 import config from '~/lib/sanity/config';
 import { schema } from '~/lib/sanity/schema';
 
@@ -34,7 +34,7 @@ const sanityConfig = defineConfig({
     types: schema,
   },
   plugins: [
-    deskTool({
+    structureTool({
       defaultDocumentNode: (S, { schemaType }) => {
         switch (schemaType) {
           case `post`:
